@@ -79,12 +79,14 @@ body{
     /*width: calc(100% / 4);*/
     width:50%;
     cursor: pointer;
-    border-right: 1px solid #171b26;
+    /*border-right: 1px solid #171b26;*/
     background-color: #293447;
+    border-radius: 25px;
 }
 
 .controls i:hover{
-    background-color: #3f516e;
+    background-color: #435a80;
+    color: #e5efff;
 }
 
 
