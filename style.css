@@ -54,18 +54,40 @@ body{
 
 .controls{
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+    justify-content: center;
+    align-items: center;
+    gap:4px;
+    width: 100px;
+    flex-direction: column;
+    background: transparent;
+    margin-left: 10px;
 }
+.controls .horizontal{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    width:100%;
+}
+
 
 .controls i{
     padding: 25px 0;
     text-align: center;
     font-size: 1.3rem;
     color: #b8c6dc;
-    width: calc(100% / 4);
+    /*width: calc(100% / 4);*/
+    width:50%;
     cursor: pointer;
     border-right: 1px solid #171b26;
+    background-color: #293447;
 }
+
+.controls i:hover{
+    background-color: #3f516e;
+}
+
+
 
 @media screen and (max-width: 800px){
     .wrapper{
