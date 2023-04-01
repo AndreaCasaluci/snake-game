@@ -4,7 +4,7 @@ const highScoreElement=document.querySelector(".high-score");
 const controls=document.querySelectorAll(".controls i");
 const overlay=document.querySelector(".overlay");
 const endgame=document.querySelector(".endgame-wrapper");
-const gameInfo=document.querySelector(".game-info")
+const gameInfo=document.querySelectorAll(".game-info")
 const tryAgainButton=document.querySelector(".button");
 let gameOver=false;
 let foodX, foodY;
@@ -13,11 +13,13 @@ let velocityX=0, velocityY=0;
 let snakeBody=[];
 let setIntervalId;
 let score=0;
+let lastHighScore;
 
 // Get high score from local storage
 
 let highScore=localStorage.getItem("high-score") || 0;
 highScoreElement.innerText= `High Score: ${highScore}`;
+lastHighScore=highScore;
 
 // Pass a random between 1 and 30 as food position
 
@@ -37,7 +39,10 @@ const handleGameOver= () =>{
     tryAgainButton.addEventListener("click", () => {
         location.reload();
     })
-    gameInfo.textContent="The snake has reached the following length: "+score;
+    gameInfo[0].textContent="The snake has reached the following length: "+score;
+    if(score>lastHighScore){
+        gameInfo[1].textContent="Congrats! You've beaten the High Score ("+lastHighScore+")."
+    }
     overlay.style.display="block";
     endgame.style.display="block";
     clearInterval(setIntervalId);
@@ -78,8 +83,8 @@ const initGame=() =>{
 
     // When snake eat food
     if(snakeX===foodX && snakeY==foodY){
-        updateFoodPosition();
         snakeBody.push([foodY, foodX]); //Add food to snake body array
+        updateFoodPosition();
         score++;
         highScore=score>=highScore ? score : highScore; // if score > high score => high score=score
         
