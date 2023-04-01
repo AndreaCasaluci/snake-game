@@ -41,7 +41,7 @@ const handleGameOver= () =>{
     })
     gameInfo[0].textContent="The snake has reached the following length: "+score;
     if(score>lastHighScore){
-        gameInfo[1].textContent="Congrats! You've beaten the High Score ("+lastHighScore+")."
+        gameInfo[1].textContent="Congrats! You've beaten the last High Score ("+lastHighScore+")."
     }
     overlay.style.display="block";
     endgame.style.display="block";
