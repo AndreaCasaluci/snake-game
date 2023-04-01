@@ -2,20 +2,17 @@ const playBoard=document.querySelector(".play-board");
 const scoreElement=document.querySelector(".score");
 const highScoreElement=document.querySelector(".high-score");
 const controls=document.querySelectorAll(".controls i");
+const overlay=document.querySelector(".overlay");
+const endgame=document.querySelector(".endgame-wrapper");
+const gameInfo=document.querySelector(".game-info")
+const tryAgainButton=document.querySelector(".button");
 let gameOver=false;
 let foodX, foodY;
-let snakeX=5, snakeY=5;
+let snakeX=Math.floor(Math.random()*30)+1, snakeY=Math.floor(Math.random()*30)+1;
 let velocityX=0, velocityY=0;
 let snakeBody=[];
 let setIntervalId;
 let score=0;
-
-// Randomize initial snake position
-
-const setInitialPosition= () =>{
-    snakeX=Math.floor(Math.random()*30)+1;
-    snakeY=Math.floor(Math.random()*30)+1;
-}
 
 // Get high score from local storage
 
@@ -36,9 +33,19 @@ const updateFoodPosition= () =>{
 }
 
 const handleGameOver= () =>{
+    let endphrase;
+    tryAgainButton.addEventListener("click", () => {
+        location.reload();
+    })
+    gameInfo.textContent="The snake has reached the following length: "+score;
+    overlay.style.display="block";
+    endgame.style.display="block";
     clearInterval(setIntervalId);
-    alert("Game Over! Press OK to replay...");
-    location.reload();
+    tryAgainButton.addEventListener("click", () => {
+        location.reload();
+    })
+  /*  alert("Game Over! Press OK to replay...");
+    location.reload();*/
 }
 
 // Change velocity value based on key press
